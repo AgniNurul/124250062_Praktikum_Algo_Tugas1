@@ -129,17 +129,27 @@ void tambahBarang() {
 		return;
 	}
 	
-	Barang b;
-	cin.ignore();
-	cout << "Nama Barang: ";
-	cin.getline(b.nama, 50);
-	cout << "Harga Barang: ";
-	cin >> b.harga;
-	cout << "Stok Barang: ";
-	cin >> b.stok;
-	cin.ignore();
+	int jumlah;
+    cout << "Masukkan jumlah barang: ";
+    cin >> jumlah;
+    cin.ignore();
 	
-	fprintf(fp, "%s %d %d\n", b.nama, b.harga, b.stok);
+	Barang b;
+	for(int i = 0; i < jumlah; i++) {
+        cout << "\nData ke-" << i + 1 << endl;
+
+        cout << "Nama Barang: ";
+        cin.getline(b.nama, 50);
+
+        cout << "Harga Barang: ";
+        cin >> b.harga;
+
+        cout << "Stok Barang: ";
+        cin >> b.stok;
+        cin.ignore();
+
+        fprintf(fp, "%s | %d | %d\n", b.nama, b.harga, b.stok);
+    }
 	fclose(fp);
 	
 	cout << "Barang ditambahkan!\n";
@@ -155,7 +165,7 @@ void lihatBarang() {
 	Barang arr[100];
 	int n = 0;
 	
-	while(fscanf(fp, "%[\\n] %d %d\n", arr[n].nama, &arr[n].harga, &arr[n].stok) != EOF) {
+	while(fscanf(fp, "%[^|] | %d | %d\n", arr[n].nama, &arr[n].harga, &arr[n].stok) != EOF) {
 		n++;
 	}
 	fclose(fp);
@@ -200,7 +210,7 @@ void cariBarang() {
 	Barang arr[100];
 	int n = 0;
 	
-	while(fscanf(fp, "%[\\n] %d %d\n", arr[n].nama, &arr[n].harga, &arr[n].stok) != EOF) {
+	while(fscanf(fp, "%[^|] | %d | %d\n", arr[n].nama, &arr[n].harga, &arr[n].stok) != EOF) {
 		n++;
 	}
 	fclose(fp);
@@ -256,7 +266,7 @@ void editBarang() {
     Barang arr[100];
     int n = 0;
 
-    while(fscanf(fp, "%[\\n] %d %d\n", arr[n].nama, &arr[n].harga, &arr[n].stok) != EOF) {
+    while(fscanf(fp, "%[^|] | %d | %d\n", arr[n].nama, &arr[n].harga, &arr[n].stok) != EOF) {
         n++;
     }
     fclose(fp);

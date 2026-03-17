@@ -1,3 +1,5 @@
 100 budi
 100 Budi
 102 Andi
+122 Asep
+133 Thomas
